@@ -1,4 +1,4 @@
-svg, select {
+svg {
     margin: 0 auto;
     display: block;
 }
@@ -6,4 +6,10 @@ svg, select {
 path {
     stroke: #ccc;
     stroke-width: 0.25px;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
 }

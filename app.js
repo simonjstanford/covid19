@@ -16,10 +16,17 @@ d3.queue()
     var path = createMapPath(width, height);
     renderData(geoData, path, width, height);
 
-    var range = getSelectControl();
-    range.on("change", d => setColour(d3.event.target.value, infectionData));
-
-   setColour(range.property("value"), infectionData);
+    var maxDay = infectionData["US"].length;
+    var currentDay = 1;
+    setInterval(() => {
+        if (currentDay < maxDay) {
+            d3.select("h1").text("Day " + currentDay);
+            setColour(currentDay, infectionData);
+            currentDay +=1;
+        } else {
+            clearInterval();
+        }
+    }, 100);
  }
 
 function addDataToMap(infectionData, geoData) {
@@ -49,7 +56,8 @@ function renderData(geoData, path, width, height) {
         .enter()
         .append("path")
         .classed("country", true)
-        .attr("d", path);
+        .attr("d", path)
+        .attr("fill", "white");
 }
 
 function getSelectControl() {
@@ -60,18 +68,21 @@ function setColour(dayNumber, infectionData) {
     var colourRange = ["white", "red"];
 
     var scale = d3.scaleLinear()
-                  .domain([0, 150000])
+                  .domain([0, 500000])
                   .range(colourRange);
 
     d3.selectAll(".country")
          .transition()
-         .duration(250)
+         .duration(50)
          .ease(d3.easeBackIn)
          .attr("fill", d => {
              var data = d.properties[+dayNumber];
              if (data) {
-             var confirmed = data.confirmed;
-                return scale(confirmed);
+                var confirmed = data.confirmed;
+                var recovered = data.recovered;
+                var deaths = data.deaths;
+                var active = confirmed - recovered - deaths;
+                return scale(active);
              } else {
                  return "#ccc";
              }
