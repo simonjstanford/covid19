@@ -12,6 +12,10 @@ h1, h2, p {
     text-align: center;
 }
 
+.keyitem {
+    display: inline-block;
+}
+
 .keycontainer {
     text-align: center;
     margin: 20px 0 0 0;
@@ -29,7 +33,6 @@ h1, h2, p {
     border: gray;
     border-style: solid;
     border-width: 1px;
-    display: inline-block;
 }
 
 .key-text {
