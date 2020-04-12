@@ -20,7 +20,7 @@ d3.queue()
     var currentDay = 1;
     setInterval(() => {
         if (currentDay < maxDay) {
-            d3.select("h1").text("Day " + currentDay);
+            d3.select("h2").text("Day " + currentDay);
             setColour(currentDay, infectionData);
             currentDay +=1;
         } else {
@@ -65,10 +65,10 @@ function getSelectControl() {
 }
 
 function setColour(dayNumber, infectionData) {
-    var colourRange = ["white", "red"];
+    var colourRange = ["#ff5733", "#511845"];
 
-    var scale = d3.scaleLinear()
-                  .domain([0, 500000])
+    var scale = d3.scaleLog()
+                  .domain([0, 250000])
                   .range(colourRange);
 
     d3.selectAll(".country")
@@ -82,7 +82,20 @@ function setColour(dayNumber, infectionData) {
                 var recovered = data.recovered;
                 var deaths = data.deaths;
                 var active = confirmed - recovered - deaths;
-                return scale(active);
+
+                if (active === 0) {
+                    return "white";
+                } else if (active < 100) {
+                    return "#ffd868";
+                } else if (active < 1000) {
+                    return "#f8615a";
+                } else if (active < 10000) {
+                    return "#b80d57";
+                } else if (active < 100000) {
+                    return "#721b65";
+                } else {
+                    return "#202040";
+                }
              } else {
                  return "#ccc";
              }
