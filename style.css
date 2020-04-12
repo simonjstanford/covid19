@@ -8,10 +8,8 @@ path {
     stroke-width: 0.25px;
 }
 
-h1, h2 {
+h1, h2, p {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
 }
 
 .keycontainer {
@@ -32,21 +30,21 @@ h1, h2 {
 }
 
 #hundred {
-    background-color: #ffd868;
+    background-color: #C5A1C1;
 }
 
 #thousand {
-    background-color: #f8615a;
+    background-color: #B78AB1;
 }
 
 #tenThousand {
-    background-color: #b80d57;
+    background-color: #A56D9D;
 }
 
 #hundredThousand {
-    background-color: #721b65;
+    background-color: #8E4984;
 }
 
 #greater {
-    background-color: #202040;
+    background-color: #721b65;
 }

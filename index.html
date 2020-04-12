@@ -2,27 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>D3 Map</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Active Casess</h1>
-  <h2>Day 0</h2>
-  <svg version="1.1"
-       baseProfile="full"
-       xmlns="http://www.w3.org/2000/svg"
-       id="map">
-  </svg>
 
-  <div class=keycontainer>
-    <div id="zero" class="key"></div>
-    <div id="hundred" class="key"></div>
-    <div id="thousand" class="key"></div>
-    <div id="tenThousand" class="key"></div>
-    <div id="hundredThousand" class="key"></div>
-    <div id="greater" class="key"></div>
-  </div>
-  
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">COVID-19</a>
+  </nav>
+
+  <main role="main" class="container">
+    <div class="starter-template">
+      <h1>Active Cases</h1>
+      <p class="lead">Daily worldwide change in active COVID-19 cases.</p>
+    </div>
+
+    <h2>Day 0</h2>
+    <svg version="1.1"
+        baseProfile="full"
+        xmlns="http://www.w3.org/2000/svg"
+        id="map">
+    </svg>
+
+    <div class=keycontainer>
+      <div id="zero" class="key"></div>
+      <div id="hundred" class="key"></div>
+      <div id="thousand" class="key"></div>
+      <div id="tenThousand" class="key"></div>
+      <div id="hundredThousand" class="key"></div>
+      <div id="greater" class="key"></div>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script src="app.js"></script>

@@ -26,7 +26,7 @@ d3.queue()
         } else {
             clearInterval();
         }
-    }, 100);
+    }, 200);
  }
 
 function addDataToMap(infectionData, geoData) {
@@ -73,7 +73,7 @@ function setColour(dayNumber, infectionData) {
 
     d3.selectAll(".country")
          .transition()
-         .duration(50)
+         .duration(0)
          .ease(d3.easeBackIn)
          .attr("fill", d => {
              var data = d.properties[+dayNumber];
@@ -86,15 +86,15 @@ function setColour(dayNumber, infectionData) {
                 if (active === 0) {
                     return "white";
                 } else if (active < 100) {
-                    return "#ffd868";
+                    return "#C5A1C1";
                 } else if (active < 1000) {
-                    return "#f8615a";
+                    return "#B78AB1";
                 } else if (active < 10000) {
-                    return "#b80d57";
+                    return "#A56D9D";
                 } else if (active < 100000) {
-                    return "#721b65";
+                    return "#8E4984";
                 } else {
-                    return "#202040";
+                    return "#721b65";
                 }
              } else {
                  return "#ccc";
