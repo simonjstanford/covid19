@@ -1,6 +1,6 @@
 d3.queue()
   .defer(d3.json, './50m.json')
-  .defer(d3.json, './timeseries.json') //from https://pomber.github.io/covid19/timeseries.json
+  .defer(d3.json, 'https://pomber.github.io/covid19/timeseries.json')
   .await(renderMap);
 
   function renderMap(error, mapData, infectionData) {
@@ -10,10 +10,10 @@ d3.queue()
 
     addDataToMap(infectionData, geoData);
 
-    var width = 960;
-    var height = 600;
+    var width = screen.width < 1000 ? screen.width - 40 : 960;
+    var height = width * 0.625;
 
-    var path = createMapPath(width, height);
+    var path = createMapPath(width, height, geoData);
     renderData(geoData, path, width, height);
 
     var maxDay = infectionData["US"].length;
@@ -26,8 +26,10 @@ d3.queue()
         } else {
             clearInterval();
         }
-    }, 200);
+    }, 100);
  }
+
+//window.addEventListener("resize", (e) => renderMap);
 
 function addDataToMap(infectionData, geoData) {
     const entries = Object.entries(infectionData);
@@ -39,10 +41,10 @@ function addDataToMap(infectionData, geoData) {
     });
 }
 
-function createMapPath(width, height) {
+function createMapPath(width, height, geoData) {
     var projection = d3.geoMercator()
-        .scale(125)
-        .translate([width / 2, height / 1.4]);
+        .fitSize([width, height], {type:"FeatureCollection", features: geoData})
+        .translate([width / 2, height / 1.6]);
     var path = d3.geoPath().projection(projection);
     return path;
 }
@@ -65,12 +67,6 @@ function getSelectControl() {
 }
 
 function setColour(dayNumber, infectionData) {
-    var colourRange = ["#ff5733", "#511845"];
-
-    var scale = d3.scaleLog()
-                  .domain([0, 250000])
-                  .range(colourRange);
-
     d3.selectAll(".country")
          .transition()
          .duration(0)
